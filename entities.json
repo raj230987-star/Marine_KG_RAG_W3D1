@@ -1,0 +1,457 @@
+[
+    {
+        "name": "Micropilot FMR51",
+        "entity_type": "Sensor",
+        "description": "The standard sensor for highest demands in liquid level measurement",
+        "evidence": "Micropilot FMR51 The standard sensor for highest demands in liquid level measurement",
+        "page_number": 1
+    },
+    {
+        "name": "Endress+Hauser",
+        "entity_type": "Manufacturer",
+        "description": "Manufacturer website indicated by URL www.in.endress.com/FMR51",
+        "evidence": "www.in.endress.com/FMR51",
+        "page_number": 1
+    },
+    {
+        "name": "Radar measurement",
+        "entity_type": "Technology",
+        "description": "Measurement technology used by the sensor",
+        "evidence": "Radar measurement Time-of-Flight",
+        "page_number": 1
+    },
+    {
+        "name": "Time-of-Flight",
+        "entity_type": "Technology",
+        "description": "Radar measurement technology principle used",
+        "evidence": "Radar measurement Time-of-Flight",
+        "page_number": 1
+    },
+    {
+        "name": "Liquid level measurement",
+        "entity_type": "Application",
+        "description": "Application of the sensor",
+        "evidence": "The standard sensor for highest demands in liquid level measurement",
+        "page_number": 1
+    },
+    {
+        "name": "Accuracy",
+        "entity_type": "Accuracy",
+        "description": "Measurement accuracy of the sensor",
+        "evidence": "Accuracy +/- 2 mm (0.08 in)",
+        "page_number": 1
+    },
+    {
+        "name": "Process temperature XT",
+        "entity_type": "Process Temperature",
+        "description": "Process temperature range for XT version",
+        "evidence": "Process temperature XT: -196...+280 °C (-321...+536 °F)",
+        "page_number": 1
+    },
+    {
+        "name": "Process temperature HT",
+        "entity_type": "Process Temperature",
+        "description": "Process temperature range for HT version",
+        "evidence": "Process temperature HT: -196...+450 °C (-321...+842 °F)",
+        "page_number": 1
+    },
+    {
+        "name": "Process pressure / max. overpressure limit",
+        "entity_type": "Process Pressure",
+        "description": "Process pressure range including vacuum and max overpressure",
+        "evidence": "Process pressure / max. overpressure limit Vacuum...160 bar (Vacuum...2320 psi)",
+        "page_number": 1
+    },
+    {
+        "name": "Max. measurement distance Standard",
+        "entity_type": "Measurement Range",
+        "description": "Maximum measurement distance in standard mode",
+        "evidence": "Max. measurement distance Standard: 40 m (131 ft)",
+        "page_number": 1
+    },
+    {
+        "name": "Max. measurement distance with Advanced dynamics",
+        "entity_type": "Measurement Range",
+        "description": "Maximum measurement distance with Advanced dynamics mode",
+        "evidence": "With \"Advanced dynamics\": 70 m (230 ft)",
+        "page_number": 1
+    },
+    {
+        "name": "Output Signal",
+        "entity_type": "Output Signal",
+        "description": "Not explicitly specified in the text",
+        "evidence": "No explicit output signal mentioned",
+        "page_number": 1
+    },
+    {
+        "name": "Main wetted parts",
+        "entity_type": "Wetted Materials",
+        "description": "Materials in contact with the process medium",
+        "evidence": "Main wetted parts 316L, Alloy C, PTFE, ceramic",
+        "page_number": 1
+    },
+    {
+        "name": "Micropilot FMR51",
+        "entity_type": "Sensor",
+        "description": "A sensor for level measurement under extreme process conditions like high temperature and high pressure in oil & gas and chemical industry.",
+        "evidence": "Micropilot FMR51 for level measurement even under extreme process conditions like high temperature and high pressure in the oil & gas and chemical industry.",
+        "page_number": 2
+    },
+    {
+        "name": "Endress+Hauser",
+        "entity_type": "Manufacturer",
+        "description": "Manufacturer of the Micropilot FMR51 sensor.",
+        "evidence": "Micropilot FMR51\nEndress+Hauser",
+        "page_number": 2
+    },
+    {
+        "name": "Level radar",
+        "entity_type": "Technology",
+        "description": "Measuring principle used by the Micropilot FMR51 for continuous, non-contact level measurement.",
+        "evidence": "Measuring principle\nLevel radar",
+        "page_number": 2
+    },
+    {
+        "name": "Continuous non-contact level measurement of liquids, pastes and slurries",
+        "entity_type": "Application",
+        "description": "Used for continuous, non-contact level measurement of liquids, pastes and slurries even under extreme process conditions.",
+        "evidence": "Micropilot is used for continuous, non-contact level measurement of liquids, pastes and slurries.",
+        "page_number": 2
+    },
+    {
+        "name": "40...100 mm",
+        "entity_type": "Measurement Range",
+        "description": "Horn antenna measurement range for the sensor.",
+        "evidence": "Horn antenna: 40...100 mm",
+        "page_number": 2
+    },
+    {
+        "name": "Heartbeat Technology",
+        "entity_type": "Technology",
+        "description": "Technology feature included in the Micropilot FMR51 for enhanced operation.",
+        "evidence": "Heartbeat Technology,",
+        "page_number": 2
+    },
+    {
+        "name": "SIL 2 according to IEC 61508",
+        "entity_type": "Technology",
+        "description": "Safety Integrity Level 2 certification according to IEC 61508 standard for the sensor.",
+        "evidence": "SIL 2 according to IEC 61508,",
+        "page_number": 2
+    },
+    {
+        "name": "Bluetooth® wireless technology and App",
+        "entity_type": "Technology",
+        "description": "Optional Bluetooth wireless technology and app for commissioning and remote access.",
+        "evidence": "Bluetooth® commissioning,\nOperation and maintenance SmartBlue App,\nBluetooth® wireless technology and App (optional)",
+        "page_number": 2
+    },
+    {
+        "name": "2-wire (HART / PROFIBUS PA/ FOUNDATION Fieldbus)",
+        "entity_type": "Output Signal",
+        "description": "Communication and supply interface options for the sensor.",
+        "evidence": "Supply / Communication\n2-wire (HART / PROFIBUS PA/ FOUNDATION Fieldbus)",
+        "page_number": 2
+    },
+    {
+        "name": "4-wire (HART)",
+        "entity_type": "Output Signal",
+        "description": "Communication and supply interface option for the sensor.",
+        "evidence": "4-wire (HART)",
+        "page_number": 2
+    },
+    {
+        "name": "K-band (~26 GHz)",
+        "entity_type": "Technology",
+        "description": "Operating frequency band of the radar sensor.",
+        "evidence": "Frequency\nK-band (~26 GHz)",
+        "page_number": 2
+    },
+    {
+        "name": "Micropilot FMR51",
+        "entity_type": "Sensor",
+        "description": "Name of the sensor model.",
+        "evidence": "Micropilot FMR51",
+        "page_number": 3
+    },
+    {
+        "name": "Endress+Hauser",
+        "entity_type": "Manufacturer",
+        "description": "Manufacturer of the sensor.",
+        "evidence": "Endress+Hauser",
+        "page_number": 3
+    },
+    {
+        "name": "Accuracy +/- 2 mm (0.08 in)",
+        "entity_type": "Accuracy",
+        "description": "Measurement accuracy of the sensor.",
+        "evidence": "Accuracy +/- 2 mm (0.08 in)",
+        "page_number": 3
+    },
+    {
+        "name": "Ambient temperature -50...+80 °C (-58...+176 °F)",
+        "entity_type": "Process Temperature",
+        "description": "Ambient temperature range for operation.",
+        "evidence": "Ambient temperature -50...+80 °C (-58...+176 °F)",
+        "page_number": 3
+    },
+    {
+        "name": "Process temperature XT: -196...+280 °C (-321...+536 °F)",
+        "entity_type": "Process Temperature",
+        "description": "Process temperature range for XT version.",
+        "evidence": "Process temperature XT: -196...+280 °C (-321...+536 °F)",
+        "page_number": 3
+    },
+    {
+        "name": "Process temperature HT: -196...+450 °C (-321...+842 °F)",
+        "entity_type": "Process Temperature",
+        "description": "Process temperature range for HT version.",
+        "evidence": "Process temperature HT: -196...+450 °C (-321...+842 °F)",
+        "page_number": 3
+    },
+    {
+        "name": "Process pressure / max. overpressure limit Vacuum...160 bar (Vacuum...2320 psi)",
+        "entity_type": "Process Pressure",
+        "description": "Process pressure and maximum overpressure limit.",
+        "evidence": "Process pressure / max. overpressure limit Vacuum...160 bar (Vacuum...2320 psi)",
+        "page_number": 3
+    },
+    {
+        "name": "Main wetted parts 316L, Alloy C, PTFE, ceramic",
+        "entity_type": "Wetted Materials",
+        "description": "Materials in contact with the process medium.",
+        "evidence": "Main wetted parts 316L, Alloy C, PTFE, ceramic",
+        "page_number": 3
+    },
+    {
+        "name": "Process connection Thread: MNPT 1 1/2, R 1 1/2",
+        "entity_type": "Application",
+        "description": "Threaded process connection types.",
+        "evidence": "Process connection Thread: MNPT 1 1/2, R 1 1/2",
+        "page_number": 3
+    },
+    {
+        "name": "Process connection Flange: DN50...DN150, ASME 2\"...6\", JIS 10K, 63K",
+        "entity_type": "Application",
+        "description": "Flanged process connection types and sizes.",
+        "evidence": "Process connection Flange: DN50...DN150, ASME 2\"...6\", JIS 10K, 63K",
+        "page_number": 3
+    },
+    {
+        "name": "Process connection hygienic Tri-Clamp ISO2852",
+        "entity_type": "Application",
+        "description": "Hygienic process connection type.",
+        "evidence": "Process connection hygienic Tri-Clamp ISO2852",
+        "page_number": 3
+    },
+    {
+        "name": "Max. measurement distance Standard: 40 m (131 ft)",
+        "entity_type": "Measurement Range",
+        "description": "Maximum measurement distance in standard mode.",
+        "evidence": "Max. measurement distance Standard: 40 m (131 ft)",
+        "page_number": 3
+    },
+    {
+        "name": "Max. measurement distance With \"Advanced dynamics\": 70 m (230 ft)",
+        "entity_type": "Measurement Range",
+        "description": "Maximum measurement distance with Advanced dynamics.",
+        "evidence": "With \"Advanced dynamics\": 70 m (230 ft)",
+        "page_number": 3
+    },
+    {
+        "name": "Micropilot FMR51",
+        "entity_type": "Sensor",
+        "description": "A sensor model mentioned in the document.",
+        "evidence": "Micropilot FMR51",
+        "page_number": 4
+    },
+    {
+        "name": "Endress+Hauser",
+        "entity_type": "Manufacturer",
+        "description": "Manufacturer of the Micropilot FMR51 sensor.",
+        "evidence": "Endress+Hauser",
+        "page_number": 4
+    },
+    {
+        "name": "4...20 mA HART",
+        "entity_type": "Output_Signal",
+        "description": "Communication output signal supported by the sensor.",
+        "evidence": "Communication\n4...20 mA HART",
+        "page_number": 4
+    },
+    {
+        "name": "PROFIBUS PA",
+        "entity_type": "Output_Signal",
+        "description": "Communication protocol supported by the sensor.",
+        "evidence": "PROFIBUS PA",
+        "page_number": 4
+    },
+    {
+        "name": "FOUNDATION Fieldbus",
+        "entity_type": "Output_Signal",
+        "description": "Communication protocol supported by the sensor.",
+        "evidence": "FOUNDATION Fieldbus",
+        "page_number": 4
+    },
+    {
+        "name": "Bluetooth® wireless technology",
+        "entity_type": "Technology",
+        "description": "Wireless communication technology supported by the sensor.",
+        "evidence": "Bluetooth® wireless technology",
+        "page_number": 4
+    },
+    {
+        "name": "ATEX, FM, CSA C/US, IEC Ex, JPN Ex, INMETRO, NEPSI, KC, EAC, UK Ex",
+        "entity_type": "Certificates / Approvals",
+        "description": "Certifications and approvals held by the sensor.",
+        "evidence": "Certificates / Approvals\nATEX, FM, CSA C/US, IEC Ex, JPN Ex, INMETRO, NEPSI, KC, EAC, UK Ex",
+        "page_number": 4
+    },
+    {
+        "name": "Overfill protection WHG",
+        "entity_type": "Safety approvals",
+        "description": "Safety approval related to overfill protection.",
+        "evidence": "Safety approvals\nOverfill protection WHG",
+        "page_number": 4
+    },
+    {
+        "name": "SIL",
+        "entity_type": "Safety approvals",
+        "description": "Safety Integrity Level approval.",
+        "evidence": "Safety approvals\nSIL",
+        "page_number": 4
+    },
+    {
+        "name": "EN 10204-3.1",
+        "entity_type": "Design approvals",
+        "description": "Design approval standard.",
+        "evidence": "Design approvals\nEN 10204-3.1",
+        "page_number": 4
+    },
+    {
+        "name": "NACE MR0175, MR0103",
+        "entity_type": "Design approvals",
+        "description": "Design approvals related to material resistance standards.",
+        "evidence": "Design approvals\nNACE MR0175, MR0103",
+        "page_number": 4
+    },
+    {
+        "name": "ASME B31.3",
+        "entity_type": "Design approvals",
+        "description": "Design approval standard for process piping.",
+        "evidence": "Design approvals\nASME B31.3",
+        "page_number": 4
+    },
+    {
+        "name": "AD2000",
+        "entity_type": "Design approvals",
+        "description": "Design approval standard.",
+        "evidence": "Design approvals\nAD2000",
+        "page_number": 4
+    },
+    {
+        "name": "GL/ ABS/ LR/ BV/ DNV",
+        "entity_type": "Marine approval",
+        "description": "Marine classification society approvals.",
+        "evidence": "Marine approval\nGL/ ABS/ LR/ BV/ DNV",
+        "page_number": 4
+    },
+    {
+        "name": "Display",
+        "entity_type": "Options",
+        "description": "Option for sensor display.",
+        "evidence": "Options\nDisplay",
+        "page_number": 4
+    },
+    {
+        "name": "Customized parameterization",
+        "entity_type": "Options",
+        "description": "Option for customized parameterization of the sensor.",
+        "evidence": "Options\nCustomized parameterization",
+        "page_number": 4
+    },
+    {
+        "name": "Remote operation via SmartBlue App using Bluetooth®",
+        "entity_type": "Options",
+        "description": "Option for remote operation using SmartBlue App and Bluetooth®.",
+        "evidence": "Options\nRemote operation via SmartBlue App using Bluetooth®",
+        "page_number": 4
+    },
+    {
+        "name": "Gas-tight feed through",
+        "entity_type": "Options",
+        "description": "Option for gas-tight feed through.",
+        "evidence": "Options\nGas-tight feed through",
+        "page_number": 4
+    },
+    {
+        "name": "Antenna Extension",
+        "entity_type": "Options",
+        "description": "Option for antenna extension.",
+        "evidence": "Options\nAntenna Extension",
+        "page_number": 4
+    },
+    {
+        "name": "PWIS free",
+        "entity_type": "Options",
+        "description": "Option indicating the sensor is free from paint wetting impairment substances (PWIS).",
+        "evidence": "Options\nPWIS free",
+        "page_number": 4
+    },
+    {
+        "name": "Micropilot FMR51",
+        "entity_type": "Sensor",
+        "description": "A sensor model mentioned for continuous/liquids measurement applications.",
+        "evidence": "Micropilot FMR51",
+        "page_number": 5
+    },
+    {
+        "name": "Endress+Hauser (India) Pvt. Ltd.",
+        "entity_type": "Manufacturer",
+        "description": "Manufacturer of the Micropilot FMR51 sensor.",
+        "evidence": "Endress+Hauser (India) Pvt. Ltd.",
+        "page_number": 5
+    },
+    {
+        "name": "Ammoniacal gas phase",
+        "entity_type": "Application",
+        "description": "Application involving measurement in ammoniacal gas phase using FMR54 in stilling well.",
+        "evidence": "Ammoniacal gas phase: FMR54 in stilling well",
+        "page_number": 5
+    },
+    {
+        "name": "Strong build-up formation",
+        "entity_type": "Application",
+        "description": "Application involving strong build-up formation using FMR54 with air purge.",
+        "evidence": "Strong build- up formation: FMR54 with air purge",
+        "page_number": 5
+    },
+    {
+        "name": "316L or Alloy C non-resistant",
+        "entity_type": "Application",
+        "description": "Application requiring sensors FMR50, FMR52, FMR53 for non-resistant materials 316L or Alloy C.",
+        "evidence": "316L or Alloy C non-resistant: FMR50, FMR52, FMR53",
+        "page_number": 5
+    },
+    {
+        "name": "Hygiene requirements",
+        "entity_type": "Application",
+        "description": "Application requiring sensors FMR52, FMR53 for hygiene requirements.",
+        "evidence": "Hygiene requirements: FMR52, FMR53",
+        "page_number": 5
+    },
+    {
+        "name": "Custody transfer measurement",
+        "entity_type": "Application",
+        "description": "Application involving custody transfer measurement using FMR5xx series.",
+        "evidence": "Custody transfer measurement: FMR5xx",
+        "page_number": 5
+    },
+    {
+        "name": "Maximum measuring range",
+        "entity_type": "Measurement Parameter",
+        "description": "Maximum measuring range depends on tank form and/or application.",
+        "evidence": "Maximum measuring range is dependent on the tank form and/or application",
+        "page_number": 5
+    }
+]

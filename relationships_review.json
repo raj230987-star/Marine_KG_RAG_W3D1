@@ -1,0 +1,62 @@
+[
+    {
+        "record": {
+            "source_entity": "Micropilot FMR51",
+            "relationship": "HAS_PROCESS_CONNECTION",
+            "target_entity": "Horn antenna: 40...100 mm",
+            "evidence": "Horn antenna: 40...100 mm",
+            "page_number": 2
+        },
+        "reason": "This appears to describe antenna dimensions, not process connection."
+    },
+    {
+        "record": {
+            "source_entity": "Micropilot FMR51",
+            "relationship": "HAS_CERTIFICATION",
+            "target_entity": "EN 10204-3.1",
+            "evidence": "Design approvals EN 10204-3.1",
+            "page_number": 4
+        },
+        "reason": "Material inspection documentation; not necessarily a certification."
+    },
+    {
+        "record": {
+            "source_entity": "Micropilot FMR51",
+            "relationship": "HAS_CERTIFICATION",
+            "target_entity": "NACE MR0175, MR0103",
+            "evidence": "Design approvals NACE MR0175, MR0103",
+            "page_number": 4
+        },
+        "reason": "Review as material/design compliance requirements."
+    },
+    {
+        "record": {
+            "source_entity": "Micropilot FMR51",
+            "relationship": "HAS_CERTIFICATION",
+            "target_entity": "ASME B31.3",
+            "evidence": "Design approvals ASME B31.3",
+            "page_number": 4
+        },
+        "reason": "Review as a design code rather than a certification."
+    },
+    {
+        "record": {
+            "source_entity": "Micropilot FMR51",
+            "relationship": "HAS_CERTIFICATION",
+            "target_entity": "GL/ ABS/ LR/ BV/ DNV",
+            "evidence": "Marine approval GL/ ABS/ LR/ BV/ DNV",
+            "page_number": 4
+        },
+        "reason": "Confirm individual marine approvals and applicability to FMR51."
+    },
+    {
+        "record": {
+            "source_entity": "Micropilot FMR51",
+            "relationship": "MANUFACTURED_BY",
+            "target_entity": "Endress+Hauser (India) Pvt. Ltd.",
+            "evidence": "Micropilot FMR51\nEndress+Hauser (India) Pvt. \nLtd.\nIndia",
+            "page_number": 5
+        },
+        "reason": "Confirm whether this is the manufacturer or regional contact."
+    }
+]

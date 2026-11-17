@@ -1,0 +1,387 @@
+[
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "MANUFACTURED_BY",
+        "target_entity": "Endress+Hauser",
+        "evidence": "Products Solutions Services More information and current pricing: www.in.endress.com/FMR51",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "USES_TECHNOLOGY",
+        "target_entity": "Radar measurement",
+        "evidence": "Radar measurement Time-of-Flight Micropilot FMR51",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "USES_TECHNOLOGY",
+        "target_entity": "Time-of-Flight",
+        "evidence": "Radar measurement Time-of-Flight Micropilot FMR51",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_APPLICATION",
+        "target_entity": "liquid level measurement",
+        "evidence": "The standard sensor for highest demands in liquid level measurement",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_ACCURACY",
+        "target_entity": "±2 mm (0.08 in)",
+        "evidence": "Accuracy +/- 2 mm (0.08 in)",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_PROCESS_TEMPERATURE",
+        "target_entity": "XT: -196...+280 °C (-321...+536 °F)",
+        "evidence": "Process temperature XT: -196...+280 °C (-321...+536 °F)",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_PROCESS_TEMPERATURE",
+        "target_entity": "HT: -196...+450 °C (-321...+842 °F)",
+        "evidence": "Process temperature HT: -196...+450 °C (-321...+842 °F)",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_PROCESS_PRESSURE",
+        "target_entity": "Vacuum...160 bar (Vacuum...2320 psi)",
+        "evidence": "Process pressure / max. overpressure limit Vacuum...160 bar (Vacuum...2320 psi)",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_MEASUREMENT_RANGE",
+        "target_entity": "Standard: 40 m (131 ft)",
+        "evidence": "Max. measurement distance Standard: 40 m (131 ft)",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_MEASUREMENT_RANGE",
+        "target_entity": "With \"Advanced dynamics\": 70 m (230 ft)",
+        "evidence": "Max. measurement distance With \"Advanced dynamics\": 70 m (230 ft)",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_WETTED_MATERIAL",
+        "target_entity": "316L, Alloy C, PTFE, ceramic",
+        "evidence": "Main wetted parts 316L, Alloy C, PTFE, ceramic",
+        "page_number": 1
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "MANUFACTURED_BY",
+        "target_entity": "Endress+Hauser",
+        "evidence": "Micropilot FMR51\nEndress+Hauser",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_APPLICATION",
+        "target_entity": "level measurement under extreme process conditions like high temperature and high pressure in the oil & gas and chemical industry",
+        "evidence": "Field of application: Micropilot FMR51 for level measurement even under extreme process conditions like high temperature and high pressure in the oil & gas and chemical industry.",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "USES_TECHNOLOGY",
+        "target_entity": "innovative and patented sensor-design",
+        "evidence": "The FMR51 free space radar offers maximum reliability due to an innovative and patented sensor-design.",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "MEASURES",
+        "target_entity": "continuous, non-contact level measurement of liquids, pastes and slurries",
+        "evidence": "Micropilot is used for continuous, non-contact level measurement of liquids, pastes and slurries.",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_OUTPUT",
+        "target_entity": "2-wire (HART / PROFIBUS PA/ FOUNDATION Fieldbus)",
+        "evidence": "Supply / Communication\n2-wire (HART / PROFIBUS PA/ FOUNDATION Fieldbus)",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_OUTPUT",
+        "target_entity": "4-wire (HART)",
+        "evidence": "Supply / Communication\n4-wire (HART)",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_OUTPUT",
+        "target_entity": "Bluetooth® wireless technology and App (optional)",
+        "evidence": "Supply / Communication\nBluetooth® wireless technology and App (optional)",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "USES_TECHNOLOGY",
+        "target_entity": "K-band (~26 GHz)",
+        "evidence": "Frequency\nK-band (~26 GHz)",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_OPTION",
+        "target_entity": "Bluetooth® wireless technology and App",
+        "evidence": "Bluetooth® wireless technology and App (optional)",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_PROCESS_CONNECTION",
+        "target_entity": "Horn antenna: 40...100 mm",
+        "evidence": "Horn antenna: 40...100 mm",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "SIL 2 according to IEC 61508",
+        "evidence": "SIL 2 according to IEC 61508",
+        "page_number": 2
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "MANUFACTURED_BY",
+        "target_entity": "Endress+Hauser",
+        "evidence": "Micropilot FMR51 Endress+Hauser",
+        "page_number": 3
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_ACCURACY",
+        "target_entity": "+/- 2 mm (0.08 in)",
+        "evidence": "Accuracy +/- 2 mm (0.08 in)",
+        "page_number": 3
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_PROCESS_CONNECTION",
+        "target_entity": "Thread: MNPT 1 1/2, R 1 1/2",
+        "evidence": "Process connection Thread: MNPT 1 1/2, R 1 1/2",
+        "page_number": 3
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_PROCESS_CONNECTION",
+        "target_entity": "Flange: DN50...DN150, ASME 2\"...6\", JIS 10K, 63K",
+        "evidence": "Process connection Flange: DN50...DN150, ASME 2\"...6\", JIS 10K, 63K",
+        "page_number": 3
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_PROCESS_CONNECTION",
+        "target_entity": "Process connection hygienic Tri-Clamp ISO2852",
+        "evidence": "Process connection hygienic Tri-Clamp ISO2852",
+        "page_number": 3
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_OUTPUT",
+        "target_entity": "4...20 mA HART",
+        "evidence": "Communication 4...20 mA HART",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_OUTPUT",
+        "target_entity": "PROFIBUS PA",
+        "evidence": "Communication PROFIBUS PA",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "SUPPORTS_OUTPUT",
+        "target_entity": "FOUNDATION Fieldbus",
+        "evidence": "Communication FOUNDATION Fieldbus",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "USES_TECHNOLOGY",
+        "target_entity": "Bluetooth® wireless technology",
+        "evidence": "Communication Bluetooth® wireless technology",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "ATEX",
+        "evidence": "Certificates / Approvals ATEX",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "FM",
+        "evidence": "Certificates / Approvals FM",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "CSA C/US",
+        "evidence": "Certificates / Approvals CSA C/US",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "IEC Ex",
+        "evidence": "Certificates / Approvals IEC Ex",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "JPN Ex",
+        "evidence": "Certificates / Approvals JPN Ex",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "INMETRO",
+        "evidence": "Certificates / Approvals INMETRO",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "NEPSI",
+        "evidence": "Certificates / Approvals NEPSI",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "KC",
+        "evidence": "Certificates / Approvals KC",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "EAC",
+        "evidence": "Certificates / Approvals EAC",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "UK Ex",
+        "evidence": "Certificates / Approvals UK Ex",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "Overfill protection WHG",
+        "evidence": "Safety approvals Overfill protection WHG",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "SIL",
+        "evidence": "Safety approvals SIL",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "EN 10204-3.1",
+        "evidence": "Design approvals EN 10204-3.1",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "NACE MR0175, MR0103",
+        "evidence": "Design approvals NACE MR0175, MR0103",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "ASME B31.3",
+        "evidence": "Design approvals ASME B31.3",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "AD2000",
+        "evidence": "Design approvals AD2000",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_CERTIFICATION",
+        "target_entity": "GL/ ABS/ LR/ BV/ DNV",
+        "evidence": "Marine approval GL/ ABS/ LR/ BV/ DNV",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_OPTION",
+        "target_entity": "Display",
+        "evidence": "Options Display",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_OPTION",
+        "target_entity": "Customized parameterization",
+        "evidence": "Options Customized parameterization",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_OPTION",
+        "target_entity": "Remote operation via SmartBlue App using Bluetooth®",
+        "evidence": "Options Remote operation via SmartBlue App using Bluetooth®",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_OPTION",
+        "target_entity": "Gas-tight feed through",
+        "evidence": "Options Gas-tight feed through",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_OPTION",
+        "target_entity": "Antenna Extension",
+        "evidence": "Options Antenna Extension",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "HAS_OPTION",
+        "target_entity": "PWIS free",
+        "evidence": "Options PWIS free",
+        "page_number": 4
+    },
+    {
+        "source_entity": "Micropilot FMR51",
+        "relationship": "MANUFACTURED_BY",
+        "target_entity": "Endress+Hauser (India) Pvt. Ltd.",
+        "evidence": "Micropilot FMR51\nEndress+Hauser (India) Pvt. \nLtd.\nIndia",
+        "page_number": 5
+    }
+]
