@@ -1,47 +1,51 @@
 
-from pathlib import Path
 import os
-
+import ssl
+import certifi
+from pathlib import Path
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
-# Find project folder
+# Load environment variables
 BASE_DIR = Path(__file__).resolve().parent
-
-# Load .env file
 load_dotenv(BASE_DIR / ".env")
 
-# Read Neo4j credentials
-NEO4J_URI = os.getenv("NEO4J_URI")
-NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
+# Configure trusted CA certificates
+os.environ["SSL_CERT_FILE"] = certifi.where()
 
-# Check credentials
-if not all([NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD]):
-    raise ValueError("Neo4j credentials missing. Check your .env file.")
-
-# Create database connection
-driver = GraphDatabase.driver(
-    NEO4J_URI,
-    auth=(NEO4J_USERNAME, NEO4J_PASSWORD)
+ssl_context = ssl.create_default_context(
+    cafile=certifi.where()
 )
 
+# Neo4j credentials
+uri = os.getenv("NEO4J_URI")
+username = os.getenv("NEO4J_USERNAME")
+password = os.getenv("NEO4J_PASSWORD")
+
+print("URI loaded:", bool(uri))
+print("Username loaded:", bool(username))
+print("Password loaded:", bool(password))
+print("CA certificate:", certifi.where())
+
 try:
-    # Verify database connection
+    driver = GraphDatabase.driver(
+        uri.replace("neo4j+s://", "neo4j://"),
+        auth=(username, password),
+        encrypted=True,
+        ssl_context=ssl_context
+    )
+
     driver.verify_connectivity()
 
-    print("Neo4j connection successful!")
-
-    # Execute a test query
     with driver.session() as session:
         result = session.run(
-            "RETURN 'Marine Sensor KG-RAG' AS project"
+            "RETURN 'Neo4j Connected Successfully' AS message"
         )
 
-        record = result.single()
+        print(result.single()["message"])
 
-        print("Connected Project:", record["project"])
-
-finally:
     driver.close()
-    print("Neo4j connection closed.")
+
+except Exception as error:
+    print("Connection failed:")
+    print(type(error).__name__, error)

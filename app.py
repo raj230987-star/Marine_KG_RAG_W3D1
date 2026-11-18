@@ -1,18 +1,20 @@
 
 import os
+import ssl
 from pathlib import Path
+from typing import Literal
 
+import certifi
 import streamlit as st
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
-from typing import Literal
 
 
-# --------------------------------------------------
+# ==================================================
 # 1. PAGE CONFIGURATION
-# --------------------------------------------------
+# ==================================================
 
 st.set_page_config(
     page_title="Marine Sensor KG-RAG",
@@ -24,21 +26,33 @@ BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
 
-# --------------------------------------------------
-# 2. LLM CONFIGURATION
-# --------------------------------------------------
+# ==================================================
+# 2. OPENAI LLM CONFIGURATION
+# ==================================================
 
-llm = ChatOpenAI(
-    model="gpt-4.1-mini",
-    temperature=0
-)
+@st.cache_resource
+def get_llm():
+
+    api_key = os.getenv("OPENAI_API_KEY")
+
+    if not api_key:
+        raise ValueError("OPENAI_API_KEY is missing in .env")
+
+    return ChatOpenAI(
+        model="gpt-4.1-mini",
+        temperature=0
+    )
 
 
-# --------------------------------------------------
+llm = get_llm()
+
+
+# ==================================================
 # 3. QUESTION CLASSIFICATION
-# --------------------------------------------------
+# ==================================================
 
 class QuestionIntent(BaseModel):
+
     category: Literal[
         "manufacturer",
         "accuracy",
@@ -56,21 +70,29 @@ class QuestionIntent(BaseModel):
 intent_llm = llm.with_structured_output(QuestionIntent)
 
 
-# --------------------------------------------------
-# 4. CATEGORY TO RELATIONSHIP MAPPING
-# --------------------------------------------------
+# ==================================================
+# 4. CATEGORY TO NEO4J RELATIONSHIP MAPPING
+# ==================================================
 
 CATEGORY_RELATIONSHIPS = {
+
     "manufacturer": ["MANUFACTURED_BY"],
+
     "accuracy": ["HAS_ACCURACY"],
+
     "measurement_range": ["HAS_MEASUREMENT_RANGE"],
+
     "process_temperature": ["HAS_PROCESS_TEMPERATURE"],
+
     "process_pressure": ["HAS_PROCESS_PRESSURE"],
+
     "communication": [
         "SUPPORTS_COMMUNICATION",
         "SUPPORTS_OUTPUT"
     ],
+
     "technology": ["USES_TECHNOLOGY"],
+
     "application": [
         "MEASURES",
         "SUPPORTS_APPLICATION"
@@ -78,9 +100,9 @@ CATEGORY_RELATIONSHIPS = {
 }
 
 
-# --------------------------------------------------
-# 5. NEO4J CONNECTION
-# --------------------------------------------------
+# ==================================================
+# 5. NEO4J CONNECTION WITH SSL FIX
+# ==================================================
 
 @st.cache_resource
 def get_neo4j_driver():
@@ -90,37 +112,86 @@ def get_neo4j_driver():
     password = os.getenv("NEO4J_PASSWORD")
 
     if not all([uri, username, password]):
-        raise ValueError("Neo4j credentials are missing in .env")
+        raise ValueError(
+            "Neo4j credentials are missing in .env"
+        )
 
-    driver = GraphDatabase.driver(
-        uri,
-        auth=(username, password)
+    # Use trusted CA certificates
+    os.environ["SSL_CERT_FILE"] = certifi.where()
+
+    ssl_context = ssl.create_default_context(
+        cafile=certifi.where()
     )
 
+    # Convert secure routing URI to standard URI
+    # and explicitly configure encrypted connection
+    secure_uri = uri.replace(
+        "neo4j+s://",
+        "neo4j://"
+    )
+
+    driver = GraphDatabase.driver(
+        secure_uri,
+        auth=(username, password),
+        encrypted=True,
+        ssl_context=ssl_context
+    )
+
+    # Verify Neo4j connection
     driver.verify_connectivity()
 
     return driver
 
 
-# --------------------------------------------------
-# 6. CLASSIFY USER QUESTION
-# --------------------------------------------------
+# ==================================================
+# 6. QUESTION CLASSIFICATION FUNCTION
+# ==================================================
 
 def classify_question(question):
 
     prompt = f"""
-    Classify this question about the Micropilot FMR51 sensor.
+    You are a question classification assistant.
 
-    Question: {question}
+    Classify the user's question about the
+    Endress+Hauser Micropilot FMR51 sensor.
 
-    Select the most suitable category:
-    manufacturer, accuracy, measurement_range,
-    process_temperature, process_pressure,
-    communication, technology, application,
-    all, unknown.
+    Available categories:
 
-    Use unknown if the question is unrelated
-    or cannot be classified.
+    manufacturer
+    accuracy
+    measurement_range
+    process_temperature
+    process_pressure
+    communication
+    technology
+    application
+    all
+    unknown
+
+    Classification rules:
+
+    Manufacturer questions -> manufacturer
+
+    Accuracy questions -> accuracy
+
+    Measuring distance or range -> measurement_range
+
+    Temperature questions -> process_temperature
+
+    Pressure questions -> process_pressure
+
+    Communication questions -> communication
+
+    Radar or measurement principle -> technology
+
+    Application questions -> application
+
+    All specification questions -> all
+
+    Unrelated questions -> unknown
+
+    User Question:
+    {question}
     """
 
     result = intent_llm.invoke(prompt)
@@ -128,9 +199,9 @@ def classify_question(question):
     return result.category
 
 
-# --------------------------------------------------
-# 7. RETRIEVE INFORMATION FROM NEO4J
-# --------------------------------------------------
+# ==================================================
+# 7. NEO4J KNOWLEDGE GRAPH RETRIEVAL
+# ==================================================
 
 def retrieve_graph_data(category):
 
@@ -141,71 +212,100 @@ def retrieve_graph_data(category):
         query = """
         MATCH (source:Entity {name: "Micropilot FMR51"})
               -[r]->(target:Entity)
-        RETURN type(r) AS relationship,
-               target.name AS information,
-               r.evidence AS evidence,
-               r.page_number AS page_number
+
+        RETURN
+            type(r) AS relationship,
+            target.name AS information,
+            r.evidence AS evidence,
+            r.page_number AS page_number
+
+        ORDER BY relationship
         """
 
-        with driver.session() as session:
-            result = session.run(query)
-            return [record.data() for record in result]
+        parameters = {}
 
-    relationship_types = CATEGORY_RELATIONSHIPS.get(
-        category, []
-    )
+    else:
 
-    if not relationship_types:
-        return []
-
-    query = """
-    MATCH (source:Entity {name: "Micropilot FMR51"})
-          -[r]->(target:Entity)
-    WHERE type(r) IN $relationship_types
-    RETURN type(r) AS relationship,
-           target.name AS information,
-           r.evidence AS evidence,
-           r.page_number AS page_number
-    """
-
-    with driver.session() as session:
-        result = session.run(
-            query,
-            relationship_types=relationship_types
+        relationship_types = CATEGORY_RELATIONSHIPS.get(
+            category, []
         )
 
-        return [record.data() for record in result]
+        if not relationship_types:
+            return [], None
+
+        query = """
+        MATCH (source:Entity {name: "Micropilot FMR51"})
+              -[r]->(target:Entity)
+
+        WHERE type(r) IN $relationship_types
+
+        RETURN
+            type(r) AS relationship,
+            target.name AS information,
+            r.evidence AS evidence,
+            r.page_number AS page_number
+
+        ORDER BY relationship
+        """
+
+        parameters = {
+            "relationship_types": relationship_types
+        }
+
+    with driver.session() as session:
+
+        result = session.run(
+            query,
+            parameters
+        )
+
+        graph_data = [
+            record.data()
+            for record in result
+        ]
+
+    return graph_data, query
 
 
-# --------------------------------------------------
-# 8. GENERATE ANSWER
-# --------------------------------------------------
+# ==================================================
+# 8. LLM ANSWER GENERATION
+# ==================================================
 
 def generate_answer(question, graph_data):
 
     if not graph_data:
+
         return (
-            "No supporting information was found "
-            "in the knowledge graph."
+            "I could not find supporting information "
+            "for this question in the Marine Sensor "
+            "Knowledge Graph. Please ask a question "
+            "related to Micropilot FMR51 specifications."
         )
 
     prompt = f"""
     You are a Marine Instrumentation Technical Assistant.
 
     Answer the user's question using ONLY the
-    Neo4j knowledge graph information below.
+    retrieved Neo4j Knowledge Graph information.
 
-    Do not invent specifications.
-    Do not use outside information.
-    If information is unavailable, clearly say so.
+    Rules:
 
-    User Question:
+    1. Do not invent technical specifications.
+    2. Do not use outside information.
+    3. Use only the retrieved graph context.
+    4. If information is unavailable, mention it.
+    5. Give a clear and technically accurate answer.
+    6. Include units wherever available.
+
+    USER QUESTION:
+
     {question}
 
-    Knowledge Graph Data:
+    RETRIEVED KNOWLEDGE GRAPH CONTEXT:
+
     {graph_data}
 
-    Give a clear, concise technical answer.
+    Generate the final technical answer.
     """
 
     response = llm.invoke(prompt)
@@ -213,65 +313,94 @@ def generate_answer(question, graph_data):
     return response.content
 
 
-# --------------------------------------------------
-# 9. MAIN QUESTION ANSWERING FUNCTION
-# --------------------------------------------------
+# ==================================================
+# 9. COMPLETE KG-RAG PIPELINE
+# ==================================================
 
 def answer_question(question):
 
+    # Step 1: Classify user question
     category = classify_question(question)
 
-    graph_data = retrieve_graph_data(category)
+    # Step 2: Retrieve information from Neo4j
+    graph_data, cypher_query = retrieve_graph_data(
+        category
+    )
 
+    # Step 3: Generate answer using retrieved context
     answer = generate_answer(
         question,
         graph_data
     )
 
-    return answer, category, graph_data
+    return {
+        "answer": answer,
+        "category": category,
+        "graph_data": graph_data,
+        "cypher_query": cypher_query
+    }
 
 
-# --------------------------------------------------
-# 10. STREAMLIT USER INTERFACE
-# --------------------------------------------------
+# ==================================================
+# 10. DISPLAY RETRIEVED GRAPH CONTEXT
+# ==================================================
 
-st.title("🌊 Marine Sensor KG-RAG Assistant")
+def display_graph_sources(graph_data):
 
-st.caption(
-    "Knowledge Graph Retrieval-Augmented Generation "
-    "for Marine Instrumentation"
-)
+    if not graph_data:
 
-st.markdown(
-    "Ask technical questions about the "
-    "**Endress+Hauser Micropilot FMR51** sensor."
-)
+        st.warning(
+            "No supporting records were retrieved from Neo4j."
+        )
 
-# Sidebar
-with st.sidebar:
+        return
 
-    st.header("Project Information")
+    st.success(
+        f"Retrieved {len(graph_data)} knowledge graph "
+        "record(s) from Neo4j."
+    )
 
-    st.write("**Project:** Marine Sensor KG-RAG")
+    for index, source in enumerate(graph_data, start=1):
 
-    st.write("**Knowledge Graph:** Neo4j AuraDB")
+        st.markdown(f"#### Retrieved Record {index}")
 
-    st.write("**AI Model:** GPT-4.1-mini")
+        col1, col2 = st.columns(2)
 
-    st.write("**Document:** FMR51 Manual")
+        with col1:
 
-    if st.button("Clear Chat History"):
-        st.session_state.messages = []
-        st.rerun()
+            st.markdown(
+                f"**Relationship:** "
+                f"`{source.get('relationship') or 'N/A'}`"
+            )
+
+            st.markdown(
+                f"**Information:** "
+                f"{source.get('information') or 'N/A'}"
+            )
+
+        with col2:
+
+            page = source.get("page_number")
+
+            st.markdown(
+                f"**PDF Page:** "
+                f"{page if page is not None else 'Not available'}"
+            )
+
+        st.markdown("**Supporting PDF Evidence:**")
+
+        st.info(
+            source.get("evidence") or "Evidence not available"
+        )
+
+        st.divider()
 
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+# ==================================================
+# 11. DISPLAY CHAT HISTORY
+# ==================================================
 
-
-# Display previous messages
-for message in st.session_state.messages:
+def display_message(message):
 
     with st.chat_message(message["role"]):
 
@@ -279,117 +408,267 @@ for message in st.session_state.messages:
 
         if message["role"] == "assistant":
 
+            category = message.get("category")
+
+            if category:
+
+                st.caption(
+                    f"Detected category: {category}"
+                )
+
             sources = message.get("sources", [])
 
             if sources:
 
-                with st.expander("📚 View Source References"):
+                with st.expander(
+                    "🔍 Retrieved Knowledge Graph Context & PDF Sources"
+                ):
 
-                    for source in sources:
+                    display_graph_sources(sources)
 
-                        st.markdown(
-                            f"**Relationship:** "
-                            f"{source.get('relationship')}"
-                        )
+            cypher_query = message.get("cypher_query")
 
-                        st.markdown(
-                            f"**Information:** "
-                            f"{source.get('information')}"
-                        )
+            if cypher_query:
 
-                        st.markdown(
-                            f"**Evidence:** "
-                            f"{source.get('evidence') or 'Not available'}"
-                        )
+                with st.expander(
+                    "🗄️ View Neo4j Cypher Query"
+                ):
 
-                        st.markdown(
-                            f"**PDF Page:** "
-                            f"{source.get('page_number') or 'Not available'}"
-                        )
-
-                        st.divider()
+                    st.code(
+                        cypher_query,
+                        language="cypher"
+                    )
 
 
-# Chat input
+# ==================================================
+# 12. MAIN APPLICATION INTERFACE
+# ==================================================
+
+st.title("🌊 Marine Sensor KG-RAG Assistant")
+
+st.subheader(
+    "Knowledge Graph Retrieval-Augmented Generation"
+)
+
+st.markdown(
+    """
+    Ask technical questions about the
+    **Endress+Hauser Micropilot FMR51 Radar Level Sensor**.
+
+    This chatbot retrieves technical information from
+    a Neo4j Knowledge Graph and generates answers
+    using OpenAI GPT-4.1-mini.
+    """
+)
+
+
+# ==================================================
+# 13. SIDEBAR
+# ==================================================
+
+with st.sidebar:
+
+    st.header("📘 Project Information")
+
+    st.write("**Project:** Marine Sensor KG-RAG")
+
+    st.write("**Document:** FMR51 Technical Manual")
+
+    st.write("**Knowledge Graph:** Neo4j AuraDB")
+
+    st.write("**LLM:** OpenAI GPT-4.1-mini")
+
+    st.write("**Framework:** LangChain")
+
+    st.divider()
+
+    st.subheader("⚙️ KG-RAG Workflow")
+
+    st.write("1. User Question")
+
+    st.write("2. Question Classification")
+
+    st.write("3. Neo4j Graph Retrieval")
+
+    st.write("4. Retrieved Context")
+
+    st.write("5. LLM Answer Generation")
+
+    st.write("6. PDF Source References")
+
+    st.divider()
+
+    if st.button(
+        "🗑️ Clear Chat History",
+        use_container_width=True
+    ):
+
+        st.session_state.messages = []
+
+        st.rerun()
+
+
+# ==================================================
+# 14. INITIALIZE CHAT HISTORY
+# ==================================================
+
+if "messages" not in st.session_state:
+
+    st.session_state.messages = []
+
+
+# Display previous messages
+
+for message in st.session_state.messages:
+
+    display_message(message)
+
+
+# ==================================================
+# 15. CHAT INPUT
+# ==================================================
+
 question = st.chat_input(
-    "Ask a technical question about Micropilot FMR51..."
+    "Ask about FMR51 measurement range, accuracy, "
+    "temperature, pressure or communication..."
 )
 
 
 if question:
 
     # Display user question
+
     st.session_state.messages.append({
+
         "role": "user",
         "content": question
+
     })
 
     with st.chat_message("user"):
+
         st.markdown(question)
 
-    # Generate answer
+
+    # Generate response
+
     with st.chat_message("assistant"):
 
-        with st.spinner(
-            "Searching knowledge graph and generating answer..."
-        ):
+        try:
 
-            try:
+            with st.spinner(
+                "Classifying question and retrieving "
+                "knowledge from Neo4j..."
+            ):
 
-                answer, category, graph_data = answer_question(
-                    question
+                result = answer_question(question)
+
+            answer = result["answer"]
+
+            category = result["category"]
+
+            graph_data = result["graph_data"]
+
+            cypher_query = result["cypher_query"]
+
+
+            # Display final AI answer
+
+            st.markdown("### 🤖 AI Generated Answer")
+
+            st.markdown(answer)
+
+
+            # Display classification
+
+            st.markdown("### 🧠 Question Classification")
+
+            st.info(
+                f"Detected Category: {category}"
+            )
+
+
+            # Display graph retrieval status
+
+            st.markdown(
+                "### 🔗 Knowledge Graph Retrieval"
+            )
+
+            if graph_data:
+
+                st.success(
+                    f"Successfully retrieved "
+                    f"{len(graph_data)} graph record(s) "
+                    "from Neo4j."
                 )
 
-                st.markdown(answer)
+            else:
 
-                st.caption(
-                    f"Detected category: {category}"
+                st.warning(
+                    "No matching graph records found."
                 )
 
-                if graph_data:
 
-                    with st.expander(
-                        "📚 View Source References",
-                        expanded=True
-                    ):
+            # Display executed Cypher query
 
-                        for source in graph_data:
+            if cypher_query:
 
-                            st.markdown(
-                                f"**Relationship:** "
-                                f"{source.get('relationship')}"
-                            )
+                with st.expander(
+                    "🗄️ View Executed Neo4j Cypher Query"
+                ):
 
-                            st.markdown(
-                                f"**Information:** "
-                                f"{source.get('information')}"
-                            )
+                    st.code(
+                        cypher_query,
+                        language="cypher"
+                    )
 
-                            st.markdown(
-                                f"**Evidence:** "
-                                f"{source.get('evidence') or 'Not available'}"
-                            )
 
-                            st.markdown(
-                                f"**PDF Page:** "
-                                f"{source.get('page_number') or 'Not available'}"
-                            )
+            # Display retrieved context and PDF sources
 
-                            st.divider()
+            with st.expander(
+                "📚 Retrieved Context & PDF Source Evidence",
+                expanded=True
+            ):
 
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "content": answer,
-                    "sources": graph_data
-                })
+                display_graph_sources(graph_data)
 
-            except Exception as error:
 
-                st.error(
-                    f"An error occurred: {error}"
-                )
+            # Save assistant response
 
-                st.info(
-                    "Check your Neo4j connection, "
-                    "API key and .env configuration."
-                )
+            st.session_state.messages.append({
+
+                "role": "assistant",
+
+                "content": answer,
+
+                "category": category,
+
+                "sources": graph_data,
+
+                "cypher_query": cypher_query
+
+            })
+
+
+        except Exception as error:
+
+            st.error(
+                f"An error occurred: {error}"
+            )
+
+            st.info(
+                "Check your OpenAI API key, Neo4j "
+                "connection and .env configuration."
+            )
+
+
+# ==================================================
+# 16. FOOTER
+# ==================================================
+
+st.divider()
+
+st.caption(
+    "Marine Sensor KG-RAG | Python | LangChain | "
+    "Neo4j AuraDB | OpenAI GPT-4.1-mini | Streamlit"
+)
